@@ -1,0 +1,115 @@
+package other;
+
+import resource.BasketPool;
+import resource.CubiclePool;
+import action.Action;
+
+/**
+ * Represents a swimmer
+ * @author Stamper - Lheureux
+ *
+ */
+
+public class Swimmer extends Action{
+
+	/**
+	 * name of the swimmer
+	 */
+	private String name;
+	
+	/**
+	 * baskets of the pool
+	 */
+	private BasketPool basket;
+	
+	/**
+	 * cubicle of the pool
+	 */
+	private CubiclePool cubicle;
+	
+	/**
+	 * time to undress
+	 */
+	private int gettingUndressed;
+	
+	/**
+	 * time to swim
+	 */
+	private int swim;
+	
+	/**
+	 * time to dress
+	 */
+	private int gettingDressed;
+	
+	/**
+	 * number of step
+	 */
+	private int steps = 0;
+	
+	public Swimmer(String name, BasketPool basket, CubiclePool cubicle, int gettingUndressed, int swim, int gettingDressed) {
+		this.name = name;
+		this.basket = basket;
+		this.cubicle = cubicle;
+		this.gettingUndressed = gettingUndressed;
+		this.swim = swim;
+		this.gettingDressed = gettingDressed;
+	}
+
+	/**
+	*	Retrun the name of the swimmer
+	*/
+	public String getName() {
+		return (name);
+	}
+
+	/**
+	*	Return the BasketPool in which the swimmer will take a basket
+	*/
+	public BasketPool getBasket() {
+		return (basket);
+	}
+
+	/**
+	*	Return the CubiclePool in which the swimmer will take a cubicle
+	*/
+	public CubiclePool getCubicle() {
+		return (cubicle);
+	}
+
+	/**
+	*	Return the time(number of steps) the swimmer will take to undress
+	*/
+	public int getGettingUndressed() {
+		return (gettingUndressed);
+	}
+
+	/**
+	*	Return the time(number of steps) the swimmer will take to swim
+	*/
+	public int getSwim() {
+		return (swim);
+	}
+
+	/**
+	*	Return the time(number of steps) the swimmer will take to dress
+	*/
+	public int getGettingDressed() {
+		return (gettingDressed);
+	}
+
+	@Override
+	public boolean isFinished() {
+		return (steps == this.gettingDressed + this.gettingUndressed + this.swim);
+	}
+
+	@Override
+	public boolean isReady() {
+		return (steps == 0);
+	}
+
+	@Override
+	protected void realDoStep() {
+		this.steps++;
+	}
+}
